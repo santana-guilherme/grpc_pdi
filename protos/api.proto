@@ -1,0 +1,25 @@
+syntax="proto3";
+import "google/protobuf/empty.proto";
+
+message ScrapRequest {
+    string url = 1;
+}
+
+message ScrapResponse {
+    int32 status = 1;
+    string message = 2;
+}
+
+message ScrapedUrl {
+    string url = 1;
+    string html = 2;
+}
+
+message ScrapedUrlList {
+    repeated ScrapedUrl scrapedurl = 1;
+}
+
+service ScrapAPI {
+    rpc ScrapURL(ScrapRequest) returns (ScrapResponse) {}
+    rpc GetScrapedURLS(google.protobuf.Empty) returns (ScrapedUrlList) {}
+}
